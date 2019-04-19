@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import RedditDetail from '../components/RedditDetail';
 import sampleData from '../sampledata/data';
 
 const fetchRedditPosts = () => {
@@ -26,16 +26,19 @@ class RedditList extends Component {
     // fetchRedditPosts();
     fakeFetchRedditPosts()
     .then((res) => {
-      console.log('res ==>', res);
       this.setState({ list: res })
     })
-    console.log('this.setState ==>', this.setState);
   }
 
   render() {
+    const { list } = this.state;
     return (
       <>
-      <h1>hi</h1>
+      {
+        list.map((detail) => (
+          <RedditDetail detail={detail} key={detail.ups} />
+        ))
+      }
       </>
     );
   }
